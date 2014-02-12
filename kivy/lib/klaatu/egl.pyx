@@ -11,7 +11,7 @@ ctypedef struct EGL_DISPMANX_WINDOW_T:
     int height
     
 cdef extern from "libklaatu_window.h":
-    DISPMANX_ELEMENT_HANDLE_T klaatu_get_window()
+    DISPMANX_ELEMENT_HANDLE_T klaatu_get_window(int w, int h)
 
 cdef extern from "EGL/egl.h":
     ctypedef int EGLint ###maybe wrong
@@ -329,7 +329,7 @@ def get_native_window_element():
         DISPMANX_ELEMENT_HANDLE_T elem
         ElementHandle E
         
-    elem = klaatu_get_window()
+    elem = klaatu_get_window(0,0)
     E = ElementHandle()
     E._handle = elem
     return E     
