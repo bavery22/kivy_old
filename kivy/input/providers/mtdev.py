@@ -45,19 +45,22 @@ from kivy.input.shape import ShapeRect
 class MTDMotionEvent(MotionEvent):
 
     def depack(self, args):
-        self.is_touch = True
-        self.sx = args['x']
-        self.sy = args['y']
-        self.profile = ['pos']
-        if 'size_w' in args and 'size_h' in args:
-            self.shape = ShapeRect()
-            self.shape.width = args['size_w']
-            self.shape.height = args['size_h']
-            self.profile.append('shape')
-        if 'pressure' in args:
-            self.pressure = args['pressure']
-            self.profile.append('pressure')
-        super(MTDMotionEvent, self).depack(args)
+        try:
+            self.is_touch = True
+            self.sx = args['x']
+            self.sy = args['y']
+            self.profile = ['pos']
+            if 'size_w' in args and 'size_h' in args:
+                self.shape = ShapeRect()
+                self.shape.width = args['size_w']
+                self.shape.height = args['size_h']
+                self.profile.append('shape')
+            if 'pressure' in args:
+                self.pressure = args['pressure']
+                self.profile.append('pressure')
+            super(MTDMotionEvent, self).depack(args)
+        except KeyError, e:
+            print 'mtdev.py depack -> KeyError - reason "%s"' % str(e)
 
     def __str__(self):
         i, sx, sy, d = (self.id, self.sx, self.sy, self.device)
