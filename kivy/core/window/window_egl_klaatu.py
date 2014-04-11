@@ -16,7 +16,6 @@ class WindowEglKlaatu(WindowBase):
     def create_window(self):
         #bcm.host_init()
 
-        //w, h = 720, 1280 #bcm.graphics_get_display_size(0)
         w, h = egl.get_display_size() #720, 1280 #bcm.graphics_get_display_size(0)
         Logger.debug('Window: Actual display size: {}x{}'.format(
             w, h))
