@@ -10,13 +10,19 @@ from kivy.logger import Logger
 from kivy.core.window import WindowBase
 from kivy.base import EventLoop
 from kivy.lib.klaatu import egl
+from kivy.config import Config
 
 class WindowEglKlaatu(WindowBase):
 
     def create_window(self):
         #bcm.host_init()
 
-        w, h = 720, 1280 #bcm.graphics_get_display_size(0)
+        w, h = 1200,1920
+        baveryW=Config.getint('graphics', 'width')
+        baveryH=Config.getint('graphics', 'height')
+        Logger.debug('Window: CONFIG display size: {}x{}'.format(
+            baveryW, baveryH))
+        
         Logger.debug('Window: Actual display size: {}x{}'.format(
             w, h))
         self._size = w, h
