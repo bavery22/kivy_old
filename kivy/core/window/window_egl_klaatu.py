@@ -17,12 +17,11 @@ class WindowEglKlaatu(WindowBase):
     def create_window(self):
         #bcm.host_init()
 
-        w, h = 1200,1920
-        baveryW=Config.getint('graphics', 'width')
-        baveryH=Config.getint('graphics', 'height')
-        Logger.debug('Window: CONFIG display size: {}x{}'.format(
-            baveryW, baveryH))
-        
+        #w, h = 1200,1920
+        # make sure application does a 
+        #Config.set('graphics', 'width', "%s"%(SCREEN_WIDTH))
+        w=Config.getint('graphics', 'width')
+        h=Config.getint('graphics', 'height')
         Logger.debug('Window: Actual display size: {}x{}'.format(
             w, h))
         self._size = w, h
